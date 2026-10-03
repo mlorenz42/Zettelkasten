@@ -12,8 +12,9 @@ VERSION="$(sed -n 's:^    <version>\(.*\)</version>:\1:p' pom.xml | head -n1)"
 APP_VERSION="$(echo "$VERSION" | sed -E 's/^([0-9]+)\.([0-9]+)\.0*([0-9]+).*/\1.\2.\3/')"
 
 INPUT="target/jpackage-input"
-OUT="target/jpackage"
-rm -rf "$INPUT" "$OUT"
+# ".noindex" keeps Spotlight/Launchpad from listing build outputs as apps
+OUT="target/jpackage.noindex"
+rm -rf "$INPUT" "$OUT" target/Zettelkasten.app
 mkdir -p "$INPUT"
 cp target/Zettelkasten.jar "$INPUT/"
 
